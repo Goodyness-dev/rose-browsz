@@ -8,7 +8,7 @@ export default function AboutSection({ onOpenWizard, onNavigateToAbout }) {
       title: 'Founder • Master PMU Brow Artist & Lead Educator',
       education: 'Li Pigments Global PRO Artist (2024 & 2025) • Bloodborne Pathogens Certified',
       badge: 'Master Artist & Educator',
-      image: '/images/jess-profile.jpg',
+      image: '/images/owner image.jpg',
       bio: 'Recognized globally by Li Pigments as an industry leader in color theory and micro-pigmentation. With over 7 years perfecting machine nano hair strokes and ombre shading in Roseville, Jess has performed 1,500+ procedures and trained dozens of successful artists.'
     },
     {

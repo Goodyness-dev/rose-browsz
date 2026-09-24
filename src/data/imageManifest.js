@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Auto-Generated Image Manifest for Rose Browsz & Beauty Academy
  * Studio & Academy Portfolio in Roseville, CA
  */
@@ -8,7 +8,7 @@ export const imageManifest = {
     alt: 'Rose Browsz Signature Nano Brow and Ombre Powder healed artistry'
   },
   artist: {
-    primary: '/images/jess-profile.jpg',
+    primary: '/images/owner image.jpg',
     alt: 'Jessica (Jess Jay) - Master PMU Brow Artist & Educator in Roseville Studio'
   },
   procedures: {
