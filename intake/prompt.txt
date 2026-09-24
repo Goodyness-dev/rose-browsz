@@ -1,0 +1,12 @@
+# Guiding Prompts & Design Directives
+
+1. Brand Colors:
+   - Primary Accent: [e.g. Deep Blue #1e40af / Racing Red #c62828 / Forest Green #15803d]
+   - Theme: Midnight Dark & Clean Light mode toggle enabled
+
+2. Wizard Step Adaptations:
+   - What trade-specific qualification step is needed?
+   - (e.g., Auto -> Vehicle Make; Plumbing -> Property Type; Roofing -> Roof Material)
+
+3. Hero Motion:
+   - Video or High-Impact photography with dark gradient contrast overlay.
