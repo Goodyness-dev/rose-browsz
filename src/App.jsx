@@ -3,12 +3,7 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/layout/Navbar';
-import Hero from './components/home/Hero';
-import ServicesSection from './components/home/ServicesSection';
-import ShowcaseSection from './components/home/ShowcaseSection';
-import AboutSection from './components/home/AboutSection';
-import LocationHoursSection from './components/home/LocationHoursSection';
-import ReviewsSection from './components/home/ReviewsSection';
+import EditorialHome from './components/home/EditorialHome';
 import Footer from './components/layout/Footer';
 import { BUSINESS_INFO } from './data/businessData';
 import { authApi, getStoredToken } from './services/api';
@@ -45,7 +40,7 @@ export default function App() {
 
   // Initialize Lenis smooth scroll for buttery interactive feeling
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const isTouch = window.matchMedia('(pointer: coarse)').matches;
     const lenis = new Lenis({
@@ -165,8 +160,8 @@ export default function App() {
     if (currentPage !== 'home') {
       setCurrentPage('home');
       if (
-        window.location.hash.startsWith('#/services') || 
-        window.location.hash.startsWith('#/admin') || 
+        window.location.hash.startsWith('#/services') ||
+        window.location.hash.startsWith('#/admin') ||
         window.location.hash.startsWith('#/about')
       ) {
         window.history.pushState(null, '', window.location.pathname);
@@ -213,8 +208,8 @@ export default function App() {
       window.location.hash = '#/admin';
     } else {
       if (
-        window.location.hash.startsWith('#/services') || 
-        window.location.hash.startsWith('#/admin') || 
+        window.location.hash.startsWith('#/services') ||
+        window.location.hash.startsWith('#/admin') ||
         window.location.hash.startsWith('#/about')
       ) {
         window.history.pushState(null, '', window.location.pathname);
@@ -273,14 +268,14 @@ export default function App() {
   return (
     <div className={`min-h-screen ${darkMode ? 'bg-black text-white' : 'bg-white text-gray-900'} flex flex-col font-sans transition-colors duration-200`}>
       {/* Global Navbar with Dark Mode Toggle */}
-      <Navbar 
-        onOpenWizard={() => handleOpenWizard()} 
+      {currentPage !== 'home' && <Navbar
+        onOpenWizard={() => handleOpenWizard()}
         currentPage={currentPage}
         onNavigate={handleNavigate}
         onScrollToSection={handleScrollToSection}
         darkMode={darkMode}
         onToggleDarkMode={toggleDarkMode}
-      />
+      />}
 
       {/* Main View: Landing Page OR All Services Page OR Dedicated About Page */}
       <main className="flex-grow">
@@ -290,7 +285,7 @@ export default function App() {
               <div className="w-8 h-8 border-2 border-sky-500 border-t-transparent rounded-full animate-spin" />
             </div>
           }>
-            <AllServicesPage 
+            <AllServicesPage
               onOpenWizard={handleOpenWizard}
               onBackToHome={() => handleNavigate('home')}
             />
@@ -301,35 +296,22 @@ export default function App() {
               <div className="w-8 h-8 border-2 border-sky-500 border-t-transparent rounded-full animate-spin" />
             </div>
           }>
-            <AboutPracticePage 
+            <AboutPracticePage
               onOpenWizard={handleOpenWizard}
               onBackToHome={() => handleNavigate('home')}
             />
           </Suspense>
         ) : (
-          <>
-            <Hero onOpenWizard={handleOpenWizard} />
-            <ServicesSection 
-              onOpenWizard={handleOpenWizard}
-              onViewAllServices={() => handleNavigate('services')}
-            />
-            <ShowcaseSection onOpenWizard={() => handleOpenWizard()} />
-            <AboutSection 
-              onOpenWizard={() => handleOpenWizard()} 
-              onNavigateToAbout={() => handleNavigate('about')}
-            />
-            <ReviewsSection onOpenWizard={() => handleOpenWizard()} />
-            <LocationHoursSection onOpenWizard={() => handleOpenWizard()} />
-          </>
+<EditorialHome onOpenWizard={handleOpenWizard} onNavigate={handleNavigate} onScrollToSection={handleScrollToSection} darkMode={darkMode} onToggleDarkMode={toggleDarkMode} />
         )}
       </main>
 
       {/* Global Footer */}
-      <Footer 
-        onOpenWizard={() => handleOpenWizard()} 
+      {currentPage !== 'home' && <Footer
+        onOpenWizard={() => handleOpenWizard()}
         onNavigate={handleNavigate}
         onScrollToSection={handleScrollToSection}
-      />
+      />}
 
       {/* Quote Request Wizard Modal (Loaded on-demand) */}
       {wizardOpen && (
@@ -343,22 +325,7 @@ export default function App() {
         </Suspense>
       )}
 
-      {/* Sticky Mobile Bottom Bar */}
-      <div className={`fixed bottom-0 left-0 right-0 z-30 sm:hidden ${darkMode ? 'bg-black/95 border-neutral-800' : 'bg-white/95 border-gray-200'} backdrop-blur-md border-t p-2.5 flex items-center gap-2.5 shadow-lg`}>
-        <a
-          href={`tel:${BUSINESS_INFO.phone.replace(/[^0-9]/g, '')}`}
-          className={`flex-1 py-3 px-3.5 rounded-xl ${darkMode ? 'bg-[#111111] text-white border-neutral-800' : 'bg-gray-100 text-gray-900 border-gray-200'} font-bold text-xs uppercase tracking-wider flex items-center justify-center font-mono border active:scale-95 transition`}
-        >
-          <span>Call (520) 836-7111</span>
-        </a>
-        <button
-          onClick={() => handleOpenWizard()}
-          className="flex-1 py-3 px-3.5 rounded-xl bg-shop-red hover:bg-shop-redHover text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-1.5 shadow-sm active:scale-95 transition cursor-pointer"
-        >
-          <span>Book Visit</span>
-          <span>→</span>
-        </button>
-      </div>
+
     </div>
   );
 }
