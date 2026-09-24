@@ -18,10 +18,10 @@ export const BUSINESS_INFO = {
   instagramHandle: "@rose.browsz",
   followersCount: "8,855+",
   postsCount: "382+",
-  bookingUrl: "https://rosebrowsz.glossgenius.com/",
+  bookingUrl: "#/services",
   googleMapsLink: "https://www.google.com/maps/search/?api=1&query=Rose+Browsz+973+Pleasant+Grove+Blvd+Suite+130+Roseville+CA+95678",
   googleMapsEmbedUrl: "https://maps.google.com/maps?q=973%20Pleasant%20Grove%20Blvd%20Suite%20130%2C%20Roseville%2C%20CA%2095678&t=&z=15&ie=UTF8&iwloc=&output=embed",
-  
+
   hours: [
     { day: "Monday", open: "Closed", close: "Closed", hours: "Closed", note: "Private Academy & 1-on-1 Apprenticeships" },
     { day: "Tuesday", open: "9:00 AM", close: "4:00 PM", hours: "9:00 AM – 4:00 PM", note: "Nano Brows & Lip Blush Appointments" },
@@ -104,7 +104,7 @@ export const isOpenNow = () => {
   const now = new Date();
   const day = now.getDay(); // 0 = Sun, 1 = Mon, ..., 6 = Sat
   const hour = now.getHours();
-  
+
   if (day === 0 || day === 1) return false; // Sun, Mon Closed
   // Tuesday - Saturday: 9:00 AM - 4:00 PM
   return hour >= 9 && hour < 16;

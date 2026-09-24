@@ -1,5 +1,5 @@
 /**
- * Production API Client for Dr. Sharon New Glass, DMD Practice Portal & Backend
+ * Rose Browsz studio API client
  */
 
 const TOKEN_STORAGE_KEY = 'biz_admin_token';
@@ -162,7 +162,7 @@ export const quotesApi = {
   async sendMessage(quoteId, { message, quotePrice = null }) {
     return request(`/api/quotes/${encodeURIComponent(quoteId)}/messages`, {
       method: 'POST',
-      body: JSON.stringify({ message, quotePrice })
+      body: JSON.stringify({ message, quotePrice, isQuote: quotePrice !== null })
     });
   }
 };

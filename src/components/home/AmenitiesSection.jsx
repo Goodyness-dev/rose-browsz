@@ -56,8 +56,8 @@ export default function AmenitiesSection({ onOpenWizard }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
               {AMENITIES.map((feature, idx) => {
                 return (
-                  <div 
-                    key={idx} 
+                  <div
+                    key={idx}
                     className="p-6 sm:p-7 rounded-3xl border-2 border-slate-200/80 dark:border-neutral-800/90 hover:border-rose-500 bg-white dark:bg-neutral-900 card-thick-hover"
                   >
                     <div className="flex items-center justify-between mb-3">
@@ -80,12 +80,12 @@ export default function AmenitiesSection({ onOpenWizard }) {
                 Request Brow Consultation
               </button>
               <a
-                href="https://rosebrowsz.glossgenius.com/"
+                href="/#/services"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-3.5 rounded-full border-2 border-neutral-900 dark:border-white text-neutral-900 dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800 font-bold text-sm sm:text-base transition-all active:scale-95 cursor-pointer"
               >
-                Book on GlossGenius →
+                Request a visit →
               </a>
             </div>
           </div>
@@ -94,4 +94,3 @@ export default function AmenitiesSection({ onOpenWizard }) {
     </section>
   );
 }
-

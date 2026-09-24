@@ -37,6 +37,6 @@ export const AMENITIES = [
   {
     icon: "CreditCard",
     title: "Flexible Booking & Payment Options",
-    description: "Instant 24/7 appointment scheduling via GlossGenius with flexible payment methods, Apple Pay, credit cards, and student course financing."
+    description: "Request a consultation on our website. The studio will follow up with availability and treatment details."
   }
 ];

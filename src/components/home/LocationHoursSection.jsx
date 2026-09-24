@@ -11,7 +11,7 @@ export default function LocationHoursSection({ onOpenWizard }) {
     <section id="location" className="scroll-mt-20 py-20 sm:py-28 bg-neutral-50/50 dark:bg-black sana-grid-bg transition-colors relative" aria-labelledby="location-heading">
       <div id="contact" className="absolute -top-24 left-0 pointer-events-none" aria-hidden="true" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 sm:mb-18 border-b border-neutral-200/70 dark:border-neutral-800/70 pb-8">
           <div className="space-y-3 max-w-2xl">
@@ -27,7 +27,7 @@ export default function LocationHoursSection({ onOpenWizard }) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
+
           {/* Hours & Contact Card */}
           <div className="lg:col-span-5 bg-white dark:bg-neutral-900 border-2 border-neutral-200/90 dark:border-neutral-800 rounded-3xl p-8 sm:p-11 space-y-6 card-thick flex flex-col justify-between transition-colors">
             <div>
@@ -98,7 +98,7 @@ export default function LocationHoursSection({ onOpenWizard }) {
                   rel="noopener noreferrer"
                   className="flex-1 py-3 px-4 rounded-full bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center transition card-thick"
                 >
-                  <span>Book GlossGenius ↗</span>
+                  <span>Request a visit ↗</span>
                 </a>
                 <a
                   href={`tel:${BUSINESS_INFO.phone.replace(/[^0-9]/g, '')}`}

@@ -16,7 +16,7 @@ export default function ReviewsSection({ onOpenWizard }) {
   return (
     <section id="reviews" className="py-20 sm:py-28 bg-white dark:bg-black sana-grid-bg transition-colors" aria-labelledby="reviews-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 sm:mb-18 border-b border-neutral-200/70 dark:border-neutral-800/70 pb-8">
           <div className="space-y-3 max-w-2xl">
@@ -113,7 +113,7 @@ export default function ReviewsSection({ onOpenWizard }) {
             rel="noopener noreferrer"
             className="px-8 py-4 rounded-full bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md active:scale-95 inline-block cursor-pointer card-thick"
           >
-            Book Your Transformation on GlossGenius →
+            Request your visit →
           </a>
         </div>
 

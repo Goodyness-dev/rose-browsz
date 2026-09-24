@@ -151,7 +151,7 @@ export default function SmileScrollHero({ onOpenWizard }) {
         // Desktop Layout (Interactive progressive scroll reveal)
         <div className="relative z-10 w-full h-full flex flex-col justify-between items-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 pointer-events-none">
           {/* Top Headline & Branding */}
-          <div 
+          <div
             ref={headlineRef}
             className="max-w-4xl mx-auto text-center space-y-3 transition-opacity duration-300 pt-4"
           >
@@ -171,7 +171,7 @@ export default function SmileScrollHero({ onOpenWizard }) {
           </div>
 
           {/* Center / Lower Third Interactive Action Buttons */}
-          <div 
+          <div
             ref={ctaContainerRef}
             className="max-w-xl mx-auto text-center space-y-3.5 opacity-0 transform translate-y-4 transition-all duration-300 pointer-events-none"
           >
@@ -181,9 +181,9 @@ export default function SmileScrollHero({ onOpenWizard }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-2xl border border-rose-400/40 active:scale-95 cursor-pointer card-thick-hover"
-                aria-label="Book on GlossGenius"
+                aria-label="Request a visit"
               >
-                <span>Book On GlossGenius →</span>
+                <span>Request a visit →</span>
               </a>
 
               <button
@@ -201,7 +201,7 @@ export default function SmileScrollHero({ onOpenWizard }) {
           </div>
 
           {/* Bottom Scroll Prompt */}
-          <div 
+          <div
             ref={scrollIndicatorRef}
             className="flex flex-col items-center space-y-1 text-[11px] uppercase tracking-[0.25em] font-bold text-neutral-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] pb-2 transition-opacity duration-300 font-mono"
           >
@@ -237,9 +237,9 @@ export default function SmileScrollHero({ onOpenWizard }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full px-6 py-4 rounded-full bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs uppercase tracking-wider shadow-2xl transition active:scale-95 cursor-pointer card-thick"
-                aria-label="Book on GlossGenius"
+                aria-label="Request a visit"
               >
-                Book On GlossGenius →
+                Request a visit →
               </a>
 
               <button

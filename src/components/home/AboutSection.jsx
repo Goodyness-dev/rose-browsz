@@ -27,7 +27,7 @@ export default function AboutSection({ onOpenWizard, onNavigateToAbout }) {
       <div className="absolute inset-0 sana-grid-bg opacity-30 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 sm:mb-18 border-b border-neutral-800 pb-8">
           <div className="space-y-3 max-w-2xl">
@@ -45,14 +45,14 @@ export default function AboutSection({ onOpenWizard, onNavigateToAbout }) {
         {/* Artist Profiles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {artists.map((doc, idx) => (
-            <div 
+            <div
               key={idx}
               className="rounded-3xl p-8 sm:p-11 bg-neutral-950 border-2 border-neutral-800/90 hover:border-neutral-700 card-thick-hover flex flex-col sm:flex-row gap-6 items-start"
             >
               <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden shrink-0 border border-neutral-700">
-                <img 
-                  src={doc.image} 
-                  alt={doc.name} 
+                <img
+                  src={doc.image}
+                  alt={doc.name}
                   className="w-full h-full object-cover object-center"
                 />
                 <span className="absolute bottom-1.5 left-1.5 right-1.5 px-2 py-0.5 rounded text-[8px] font-extrabold uppercase tracking-wider text-center bg-black/85 backdrop-blur-xs text-rose-300 border border-rose-500/30">
@@ -94,13 +94,13 @@ export default function AboutSection({ onOpenWizard, onNavigateToAbout }) {
 
         {/* Heritage & Founder Quote */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center rounded-3xl p-9 sm:p-12 bg-neutral-950 border-2 border-neutral-800/90 card-thick">
-          
+
           <div className="lg:col-span-5 space-y-4">
             <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-neutral-900 border border-neutral-800 text-[11px] font-bold text-rose-400 uppercase tracking-wider font-mono">
               <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
               <span>Li Pigments Global PRO 24 & 25</span>
             </div>
-            
+
             <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-white">
               Roseville's PMU Authority
             </h3>
@@ -142,7 +142,7 @@ export default function AboutSection({ onOpenWizard, onNavigateToAbout }) {
                 rel="noopener noreferrer"
                 className="px-6 py-3 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold uppercase tracking-wider transition flex items-center space-x-2 cursor-pointer card-thick"
               >
-                <span>Book On GlossGenius →</span>
+                <span>Request a visit →</span>
               </a>
               <button
                 onClick={() => onOpenWizard("PMU Academy & Training", "Complete PMU Brow Mastery & Certification")}

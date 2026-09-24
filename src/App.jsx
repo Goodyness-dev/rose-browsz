@@ -40,7 +40,7 @@ export default function App() {
 
   // Initialize Lenis smooth scroll for buttery interactive feeling
   useEffect(() => {
-    if (typeof window === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (currentPage === 'admin' || typeof window === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const isTouch = window.matchMedia('(pointer: coarse)').matches;
     const lenis = new Lenis({
@@ -69,7 +69,12 @@ export default function App() {
       gsap.ticker.remove(updateTicker);
       lenis.destroy();
     };
-  }, []);
+  }, [currentPage]);
+
+  useEffect(() => {
+    const titles = { home: 'Rose Browsz & Beauty Academy | Roseville, CA', services: 'The Treatment Menu | Rose Browsz', about: 'The Studio & Academy | Rose Browsz', admin: 'Studio Management | Rose Browsz' };
+    document.title = titles[currentPage];
+  }, [currentPage]);
 
   // Check stored auth token on mount
   useEffect(() => {
@@ -80,23 +85,14 @@ export default function App() {
           if (res && res.authenticated) {
             setIsAdminAuthenticated(true);
             setAdminUser({
-              name: "Dr. Sharon New Glass, DMD",
+              name: "Jessica (Jess)",
               shop: BUSINESS_INFO.name,
-              role: "Practice Administrator"
+              role: "Studio Administrator"
             });
           }
         })
         .catch(() => {
-          if (token === 'fallback_admin_token_active') {
-            setIsAdminAuthenticated(true);
-            setAdminUser({
-              name: "Dr. Sharon New Glass, DMD",
-              shop: BUSINESS_INFO.name,
-              role: "Practice Administrator"
-            });
-          } else {
-            setIsAdminAuthenticated(false);
-          }
+          setIsAdminAuthenticated(false);
         });
     }
   }, []);
@@ -104,7 +100,7 @@ export default function App() {
   // Apply dark class to <html> and <body> immediately
   useEffect(() => {
     const root = document.documentElement;
-    if (darkMode || currentPage === 'admin') {
+    if (darkMode) {
       root.classList.add('dark');
       document.body.classList.add('dark');
       if (currentPage !== 'admin') {
@@ -159,13 +155,7 @@ export default function App() {
 
     if (currentPage !== 'home') {
       setCurrentPage('home');
-      if (
-        window.location.hash.startsWith('#/services') ||
-        window.location.hash.startsWith('#/admin') ||
-        window.location.hash.startsWith('#/about')
-      ) {
-        window.history.pushState(null, '', window.location.pathname);
-      }
+      window.history.pushState(null, '', '/');
       setTimeout(performScroll, 180);
     } else {
       performScroll();
@@ -177,15 +167,22 @@ export default function App() {
     const handleRouteChange = () => {
       const hash = window.location.hash;
       const path = window.location.pathname;
-
-      if (hash === '#/admin' || hash === '#admin' || path === '/admin' || path.startsWith('/admin')) {
+      const route = hash.startsWith('#/') ? hash.slice(1) : path;
+      if (route === '/admin' || route.startsWith('/admin/') || hash === '#admin') {
         setCurrentPage('admin');
-      } else if (hash === '#/services' || hash === '#services-all' || path === '/services') {
+      } else if (route === '/services' || hash === '#services-all') {
         setCurrentPage('services');
-      } else if (hash === '#/about' || hash === '#about' || hash === '#/pmu-studio' || hash.startsWith('#/about') || path === '/about' || path === '/pmu-studio') {
+      } else if (route === '/about' || route === '/pmu-studio' || hash === '#about') {
         setCurrentPage('about');
-      } else if (hash === '#services' || hash === '#location' || hash === '#contact') {
-        handleScrollToSection(hash.replace('#', ''));
+      } else {
+        setCurrentPage('home');
+        if (['#services', '#location', '#contact'].includes(hash)) {
+          const id = hash === '#contact' ? 'location' : hash.slice(1);
+          setTimeout(() => {
+            const el = document.getElementById(id);
+            if (el) window.__lenis ? window.__lenis.scrollTo(el, { offset: -75, duration: 1.2 }) : el.scrollIntoView();
+          }, 200);
+        }
       }
     };
 
@@ -199,27 +196,9 @@ export default function App() {
   }, []);
 
   const handleNavigate = (page) => {
+    window.history.pushState(null, '', page === 'home' ? '/' : '/#/' + page);
     setCurrentPage(page);
-    if (page === 'services') {
-      window.location.hash = '#/services';
-    } else if (page === 'about') {
-      window.location.hash = '#/about';
-    } else if (page === 'admin') {
-      window.location.hash = '#/admin';
-    } else {
-      if (
-        window.location.hash.startsWith('#/services') ||
-        window.location.hash.startsWith('#/admin') ||
-        window.location.hash.startsWith('#/about')
-      ) {
-        window.history.pushState(null, '', window.location.pathname);
-      }
-    }
-    if (window.__lenis) {
-      window.__lenis.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
-    }
+    window.__lenis ? window.__lenis.scrollTo(0, { immediate: true }) : window.scrollTo(0, 0);
   };
 
   const handleOpenWizard = (category = null, service = null) => {
@@ -266,19 +245,20 @@ export default function App() {
   }
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'bg-black text-white' : 'bg-white text-gray-900'} flex flex-col font-sans transition-colors duration-200`}>
+    <div className="rb-site min-h-screen flex flex-col">
+      <a className="rb-skip" href="#rb-main">Skip to content</a>
       {/* Global Navbar with Dark Mode Toggle */}
-      {currentPage !== 'home' && <Navbar
+      <Navbar
         onOpenWizard={() => handleOpenWizard()}
         currentPage={currentPage}
         onNavigate={handleNavigate}
         onScrollToSection={handleScrollToSection}
         darkMode={darkMode}
         onToggleDarkMode={toggleDarkMode}
-      />}
+      />
 
       {/* Main View: Landing Page OR All Services Page OR Dedicated About Page */}
-      <main className="flex-grow">
+      <main id="rb-main" className="flex-grow">
         {currentPage === 'services' ? (
           <Suspense fallback={
             <div className="min-h-screen flex items-center justify-center bg-white dark:bg-black">
@@ -307,11 +287,11 @@ export default function App() {
       </main>
 
       {/* Global Footer */}
-      {currentPage !== 'home' && <Footer
+      <Footer
         onOpenWizard={() => handleOpenWizard()}
         onNavigate={handleNavigate}
         onScrollToSection={handleScrollToSection}
-      />}
+      />
 
       {/* Quote Request Wizard Modal (Loaded on-demand) */}
       {wizardOpen && (
